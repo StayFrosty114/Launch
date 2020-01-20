@@ -8,7 +8,10 @@ public class ObjectPooling : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SpawnChunk();
+        foreach (GameObject chunk in chunks)
+        {
+
+        }
     }
 
     // Update is called once per frame
@@ -17,9 +20,20 @@ public class ObjectPooling : MonoBehaviour
         
     }
 
-    private void SpawnChunk()
+    public void SpawnChunk()
     {
-
+        GameObject[] activeChunks = GameObject.FindGameObjectsWithTag("Chunk");
+        Debug.Log("Grabbing chunks");
+        foreach (GameObject chunk in activeChunks)
+        {
+            if (chunk.gameObject.activeInHierarchy)
+            {
+                Debug.Log("moving active chunks");
+                float vertPos = chunk.transform.position.y;
+                vertPos = vertPos - 1.6f;
+                chunk.transform.position = new Vector3(chunk.transform.position.x, vertPos, chunk.transform.position.z);
+            }
+        }
     }
 
     public void GetChunk()
