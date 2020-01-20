@@ -35,6 +35,9 @@ public class Projectile : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Platform"))
         {
+            if (GameObject.FindGameObjectWithTag("Cannon").GetComponent<Cannon>().moving == false)
+                GameObject.FindGameObjectWithTag("Cannon").GetComponent<Cannon>().moving = true;
+
             cannon = GameObject.FindGameObjectWithTag("Cannon");
             cannon.transform.position = transform.position;
             GameObject.Find("Overlord").GetComponent<ObjectPooling>().SpawnChunk();

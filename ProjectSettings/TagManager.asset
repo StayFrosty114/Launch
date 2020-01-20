@@ -9,6 +9,7 @@ TagManager:
   - Trigger
   - Chunk
   - Overlord
+  - Death
   layers:
   - Default
   - TransparentFX

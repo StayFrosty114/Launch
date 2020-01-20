@@ -5,13 +5,13 @@ using UnityEngine;
 public class Cannon : MonoBehaviour
 {
     public Camera mainCam;
-    private float speed = 1.0f;
-    Vector3 target = new Vector3();
-    
+
+    public bool moving = true;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -21,14 +21,15 @@ public class Cannon : MonoBehaviour
         //     return;
         // Touch touch = Input.GetTouch(0);
 
+        #region Aiming
         if (Input.GetMouseButton(0))
         {
-            
+
             Plane plane = new Plane(Vector3.back, transform.position);
             Ray ray = mainCam.ScreenPointToRay(Input.mousePosition);
 
             float hitPoint = 0.0f;
-        
+
             if (plane.Raycast(ray, out hitPoint))
             {
                 Vector3 targetPoint = ray.GetPoint(hitPoint);
@@ -47,20 +48,19 @@ public class Cannon : MonoBehaviour
                 transform.localRotation = Quaternion.Euler(erik);
 
                 Debug.Log(transform.localRotation.eulerAngles);
-
-                // transform.RotateAround(transform.position, transform.forward, angle);
-
-                // Quaternion targetRotation = transform.LookAt(targetPoint, transform.up);
-
-
-
-
-                // transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, speed * Time.deltaTime);
-
-                //transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, 90, 0);
-                // transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 180);
-                // transform.rotation = Quaternion.Euler(0, 0, transform.rotation.eulerAngles.z);
             }
+        }
+        #endregion
+
+        
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Death"))
+        {
+            Debug.Log("Hit the ground");
+            GameObject.FindGameObjectWithTag("Overlord").GetComponent<Overlord>().Death();
         }
     }
 }

@@ -2,11 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Overlord : MonoBehaviour
+public class Despawn : MonoBehaviour
 {
-    public int score;
-    public float coins;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -19,8 +16,11 @@ public class Overlord : MonoBehaviour
         
     }
 
-    public void Death()
+    private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("YOU DIED");
+        if (other.gameObject.CompareTag("Trigger"))
+        {
+            gameObject.SetActive(false);
+        }
     }
 }

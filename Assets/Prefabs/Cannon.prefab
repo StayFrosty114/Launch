@@ -61,6 +61,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCam: {fileID: 0}
+  moving: 1
 --- !u!1 &4438852394194133931
 GameObject:
   m_ObjectHideFlags: 0
@@ -242,7 +243,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 198968bf76b16df44b34edd28f593029, type: 2}
+  - {fileID: 2100000, guid: 0d8276919716124478fae7542bdda31a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
