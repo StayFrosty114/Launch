@@ -6,6 +6,7 @@ public class ObjectPooling : MonoBehaviour
 {
     private bool gameStarted = false;
     public List<GameObject> chunks;
+    public GameObject spawnPoint;
 
     private Rigidbody rB;
     private float moveSpeed = 0.001f;
@@ -62,5 +63,13 @@ public class ObjectPooling : MonoBehaviour
     public void GetChunk()
     {
         Debug.Log("Retrieve");
+        foreach (GameObject chunk in chunks)
+        {
+            if (chunk.gameObject.activeInHierarchy == false)
+            {
+                chunk.gameObject.transform.position = spawnPoint.transform.position;
+            }
+        }
+        // chunks[Random.Range]
     }
 }

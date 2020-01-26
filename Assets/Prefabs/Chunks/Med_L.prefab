@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5344810904241235494}
   - component: {fileID: 8429283889386592413}
   - component: {fileID: 8268008366366210187}
+  - component: {fileID: -6950983116426585108}
   m_Layer: 0
   m_Name: Med_L
   m_TagString: Chunk
@@ -94,6 +95,18 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &-6950983116426585108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3731376997562943665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bd29b621c8f40f40adc03ce43c603b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &877344156506204123
 PrefabInstance:
   m_ObjectHideFlags: 0
