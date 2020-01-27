@@ -10,59 +10,46 @@ public class ObjectPooling : MonoBehaviour
     public List<GameObject> inactiveChunks;
     private GameObject chunkToPlace;
     public GameObject spawnPoint;
-
-    private Rigidbody rB;
-    private float moveSpeed = 0.002f;
+    
     // Start is called before the first frame update
     void Start()
     {
-        rB = GetComponent<Rigidbody>();
-    }
-
-    public void GameStart()
-    {
-        if (gameStarted == false)
+        foreach (GameObject chunk in chunks)
         {
-            StartCoroutine(MoveLevel());
-            StartCoroutine(Accelerate());
-            gameStarted = true;
-        } 
-    }
-
-    private IEnumerator MoveLevel()
-    {
-        Debug.Log("Coroutine started");
-        while (moving)
-        {
-            Debug.Log("Moving down");
-            rB.MovePosition(transform.position -= (transform.up * moveSpeed));
-            yield return new WaitForSeconds(0);
-        }
-    }
-
-    private IEnumerator Accelerate()
-    {
-        while (moving)
-        {
-            yield return new WaitForSeconds(15);
-            Debug.Log("Speeding up" + moveSpeed);
-            moveSpeed *= 1.5f;
+            chunkToPlace = Instantiate(chunk, spawnPoint.transform.position, spawnPoint.transform.rotation, GameObject.FindGameObjectWithTag("Overlord").transform);
+            chunkToPlace.SetActive(false);
+            inactiveChunks.Add(chunkToPlace);
         }
     }
 
     public void GetChunk()
     {
         Debug.Log("Getting a chunk");
-        ChooseChunk();
+        chunkToPlace = ChooseChunk();
 
         Debug.Log("Spawning chunk");
-        // Instantiate(chunkToPlace, spawnPoint.transform.position, spawnPoint.transform.rotation);
-        Instantiate(chunkToPlace, spawnPoint.transform.position, spawnPoint.transform.rotation, GameObject.FindGameObjectWithTag("Overlord").transform);
+        chunkToPlace.transform.position = spawnPoint.transform.position;
+        chunkToPlace.SetActive(true);
+        inactiveChunks.Remove(chunkToPlace);
         // chunkToPlace.transform.parent = GameObject.FindGameObjectWithTag("Overlord").transform;
     }
 
-    private void ChooseChunk()
+    private GameObject ChooseChunk()
     {
-        chunkToPlace = chunks[Random.Range(0, chunks.Count)];
+        GameObject newChunk = chunks[Random.Range(0, chunks.Count)];
+        foreach (GameObject chunk in inactiveChunks)
+        {
+            if(chunk.name.Contains(newChunk.name))
+            {
+                return chunk;
+            }
+        }
+        return Instantiate(newChunk, spawnPoint.transform.position, spawnPoint.transform.rotation, GameObject.FindGameObjectWithTag("Overlord").transform);
+    }
+
+    public void Deactivate(GameObject chunk)
+    {
+        inactiveChunks.Add(chunk);
+        chunk.SetActive(false);
     }
 }

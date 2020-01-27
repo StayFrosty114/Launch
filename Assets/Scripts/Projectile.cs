@@ -8,14 +8,17 @@ public class Projectile : MonoBehaviour
     private float launchForce = 5.0f;
     private GameObject cannon;
 
-    private void Awake()
-    {
-        rB = GetComponent<Rigidbody>();
-    }
+    private Overlord overlord;
+    private ObjectPooling objectPooling;
 
     // Start is called before the first frame update
     void Start()
     {
+        overlord = GameObject.FindGameObjectWithTag("Overlord").GetComponent<Overlord>();
+        objectPooling = GameObject.FindGameObjectWithTag("Overlord").GetComponent<ObjectPooling>();
+        cannon = GameObject.FindGameObjectWithTag("Cannon");
+
+        rB = GetComponent<Rigidbody>();
         rB.AddRelativeForce(0, launchForce, 0, ForceMode.Impulse);
         Invoke("Kill", 3);
     }
@@ -35,12 +38,14 @@ public class Projectile : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Platform"))
         {
-            if (GameObject.FindGameObjectWithTag("Overlord").GetComponent<ObjectPooling>().moving == false)
-                GameObject.FindGameObjectWithTag("Overlord").GetComponent<ObjectPooling>().moving = true;
-
-            cannon = GameObject.FindGameObjectWithTag("Cannon");
             cannon.transform.position = transform.position;
-            GameObject.Find("Overlord").GetComponent<ObjectPooling>().GameStart();
+            cannon.gameObject.transform.parent = other.gameObject.transform;
+
+            if (overlord.gameStarted == false)
+                overlord.GameStart();
+
+            overlord.AddPoint();
+
             Destroy(gameObject);
         }
     }
