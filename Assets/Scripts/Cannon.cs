@@ -6,8 +6,6 @@ public class Cannon : MonoBehaviour
 {
     public Camera mainCam;
 
-    public bool moving = true;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -47,7 +45,7 @@ public class Cannon : MonoBehaviour
                 erik.z = Mathf.Clamp(erik.z, 0, 0);
                 transform.localRotation = Quaternion.Euler(erik);
 
-                Debug.Log(transform.localRotation.eulerAngles);
+                // Debug.Log(transform.localRotation.eulerAngles);
             }
         }
         #endregion

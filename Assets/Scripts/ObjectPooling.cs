@@ -5,54 +5,34 @@ using UnityEngine;
 public class ObjectPooling : MonoBehaviour
 {
     private bool gameStarted = false;
+    public bool moving = false;
     public List<GameObject> chunks;
+    public List<GameObject> inactiveChunks;
+    private GameObject chunkToPlace;
     public GameObject spawnPoint;
 
     private Rigidbody rB;
-    private float moveSpeed = 0.001f;
+    private float moveSpeed = 0.002f;
     // Start is called before the first frame update
     void Start()
     {
         rB = GetComponent<Rigidbody>();
-
-        foreach (GameObject chunk in chunks)
-        {
-
-        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void SpawnChunk()
+    public void GameStart()
     {
         if (gameStarted == false)
         {
             StartCoroutine(MoveLevel());
+            StartCoroutine(Accelerate());
             gameStarted = true;
-        }
-
-        // GameObject[] activeChunks = GameObject.FindGameObjectsWithTag("Chunk");
-        // Debug.Log("Grabbing chunks");
-        // foreach (GameObject chunk in activeChunks)
-        // {
-        //     if (chunk.gameObject.activeInHierarchy)
-        //     {
-        //         Debug.Log("moving active chunks");
-        //         float vertPos = chunk.transform.position.y;
-        //         vertPos -= 1.6f;
-        //         chunk.transform.position = new Vector3(chunk.transform.position.x, vertPos, chunk.transform.position.z);
-        //     }
-        // }
+        } 
     }
 
     private IEnumerator MoveLevel()
     {
         Debug.Log("Coroutine started");
-        while (GetComponentInChildren<Cannon>().moving)
+        while (moving)
         {
             Debug.Log("Moving down");
             rB.MovePosition(transform.position -= (transform.up * moveSpeed));
@@ -60,16 +40,29 @@ public class ObjectPooling : MonoBehaviour
         }
     }
 
+    private IEnumerator Accelerate()
+    {
+        while (moving)
+        {
+            yield return new WaitForSeconds(15);
+            Debug.Log("Speeding up" + moveSpeed);
+            moveSpeed *= 1.5f;
+        }
+    }
+
     public void GetChunk()
     {
-        Debug.Log("Retrieve");
-        foreach (GameObject chunk in chunks)
-        {
-            if (chunk.gameObject.activeInHierarchy == false)
-            {
-                chunk.gameObject.transform.position = spawnPoint.transform.position;
-            }
-        }
-        // chunks[Random.Range]
+        Debug.Log("Getting a chunk");
+        ChooseChunk();
+
+        Debug.Log("Spawning chunk");
+        // Instantiate(chunkToPlace, spawnPoint.transform.position, spawnPoint.transform.rotation);
+        Instantiate(chunkToPlace, spawnPoint.transform.position, spawnPoint.transform.rotation, GameObject.FindGameObjectWithTag("Overlord").transform);
+        // chunkToPlace.transform.parent = GameObject.FindGameObjectWithTag("Overlord").transform;
+    }
+
+    private void ChooseChunk()
+    {
+        chunkToPlace = chunks[Random.Range(0, chunks.Count)];
     }
 }

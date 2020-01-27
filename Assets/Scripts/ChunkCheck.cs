@@ -21,7 +21,7 @@ public class ChunkCheck : MonoBehaviour
         if (other.gameObject.CompareTag("Trigger"))
         {
             GameObject.FindGameObjectWithTag("Overlord").GetComponent<ObjectPooling>().GetChunk();
-            gameObject.SetActive(false);
+            Destroy(gameObject);
         }
     }
 }

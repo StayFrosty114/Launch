@@ -35,12 +35,12 @@ public class Projectile : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Platform"))
         {
-            if (GameObject.FindGameObjectWithTag("Cannon").GetComponent<Cannon>().moving == false)
-                GameObject.FindGameObjectWithTag("Cannon").GetComponent<Cannon>().moving = true;
+            if (GameObject.FindGameObjectWithTag("Overlord").GetComponent<ObjectPooling>().moving == false)
+                GameObject.FindGameObjectWithTag("Overlord").GetComponent<ObjectPooling>().moving = true;
 
             cannon = GameObject.FindGameObjectWithTag("Cannon");
             cannon.transform.position = transform.position;
-            GameObject.Find("Overlord").GetComponent<ObjectPooling>().SpawnChunk();
+            GameObject.Find("Overlord").GetComponent<ObjectPooling>().GameStart();
             Destroy(gameObject);
         }
     }
