@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChunkCheck : MonoBehaviour
+public class ChunkController : MonoBehaviour
 {
     private Overlord overlord;
     private ObjectPooling objectPooling;
@@ -20,7 +20,7 @@ public class ChunkCheck : MonoBehaviour
     void FixedUpdate()
     {
         if (overlord.gameStarted)
-            rB.MovePosition(transform.position -= (transform.forward * overlord.moveSpeed));
+            rB.MovePosition(transform.position -= (transform.up * overlord.moveSpeed));
     }
 
     private void OnTriggerEnter(Collider other)
