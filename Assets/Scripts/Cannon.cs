@@ -6,19 +6,17 @@ public class Cannon : MonoBehaviour
 {
     public Camera mainCam;
 
-    // Start is called before the first frame update
-    void Start()
-    {
+    private Overlord overlord;
 
+    private void Start()
+    {
+        overlord = GameObject.FindGameObjectWithTag("Overlord").GetComponent<Overlord>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        // if (Input.touchCount == 0)
-        //     return;
-        // Touch touch = Input.GetTouch(0);
-
+        // On mouse input, cannon rotates to faces mouse position.
         #region Aiming
         if (Input.GetMouseButton(0))
         {
@@ -39,26 +37,24 @@ public class Cannon : MonoBehaviour
 
                 transform.LookAt(targetPoint, transform.up);
 
+                // Clamps the cannon's rotation to one axis.
                 Vector3 erik = transform.localRotation.eulerAngles;
                 erik.x = Mathf.Clamp(erik.x, 0, 360);
                 erik.y = Mathf.Clamp(erik.y, 90, 271);
                 erik.z = Mathf.Clamp(erik.z, 0, 0);
                 transform.localRotation = Quaternion.Euler(erik);
-
-                // Debug.Log(transform.localRotation.eulerAngles);
             }
         }
-        #endregion
-
-        
+        #endregion   
     }
 
+    // If cannon hits the death floor, game over.
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Death"))
         {
             Debug.Log("Hit the ground");
-            GameObject.FindGameObjectWithTag("Overlord").GetComponent<Overlord>().Death();
+            overlord.Death();
         }
     }
 }

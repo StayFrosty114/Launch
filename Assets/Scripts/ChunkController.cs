@@ -16,13 +16,14 @@ public class ChunkController : MonoBehaviour
         rB = GetComponent<Rigidbody>();
     }
 
-// Update is called once per frame
+// Moves the chunk down steadily once the game has started.
     void FixedUpdate()
     {
         if (overlord.gameStarted)
             rB.MovePosition(transform.position -= (transform.up * overlord.moveSpeed));
     }
 
+    // If chunk hits bottom trigger, it deactivates itself and spawns a new chunk at the top.
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Trigger"))

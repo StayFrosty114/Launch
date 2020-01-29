@@ -19,12 +19,6 @@ public class Overlord : MonoBehaviour
         scoreText.text = score.ToString();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void GameStart()
     {
         gameStarted = true;
@@ -41,6 +35,7 @@ public class Overlord : MonoBehaviour
         }
     }
 
+    // Adds a point to the score every time the player moves up a platform.
     public void AddPoint()
     {
         score++;

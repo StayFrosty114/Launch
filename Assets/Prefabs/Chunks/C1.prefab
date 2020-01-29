@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 7833593112024112421}
   - component: {fileID: 3315858245880604487}
   m_Layer: 0
-  m_Name: Easy_R
+  m_Name: BG
   m_TagString: Chunk
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -165,7 +165,7 @@ PrefabInstance:
     - target: {fileID: 1866609240822587475, guid: 656f139e69d9cec47ab3041ea46211b2,
         type: 3}
       propertyPath: m_Name
-      value: Platform_Easy_R
+      value: PE
       objectReference: {fileID: 0}
     - target: {fileID: 1866609240822587439, guid: 656f139e69d9cec47ab3041ea46211b2,
         type: 3}
@@ -240,7 +240,7 @@ PrefabInstance:
     - target: {fileID: 1866609240822587475, guid: faeb1d4a528efe24d92850e7c7993bd1,
         type: 3}
       propertyPath: m_Name
-      value: P_Med (1)
+      value: PM (1)
       objectReference: {fileID: 0}
     - target: {fileID: 1866609240822587439, guid: faeb1d4a528efe24d92850e7c7993bd1,
         type: 3}
@@ -315,7 +315,7 @@ PrefabInstance:
     - target: {fileID: 1866609240822587475, guid: faeb1d4a528efe24d92850e7c7993bd1,
         type: 3}
       propertyPath: m_Name
-      value: P_Med
+      value: PM
       objectReference: {fileID: 0}
     - target: {fileID: 1866609240822587439, guid: faeb1d4a528efe24d92850e7c7993bd1,
         type: 3}

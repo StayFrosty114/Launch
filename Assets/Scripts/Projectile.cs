@@ -23,28 +23,27 @@ public class Projectile : MonoBehaviour
         Invoke("Kill", 3);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    // Destroys itself if idle for too long.
     private void Kill()
     {
         Destroy(gameObject);
     }
 
+    // Checks for collision with the TOP of a platform and teleports the cannon to that platform.
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Platform"))
         {
-            cannon.transform.position = transform.position;
-            cannon.gameObject.transform.parent = other.gameObject.transform;
+            if (transform.position.y >= cannon.transform.position.y)
+            {
+                overlord.AddPoint();
+                cannon.transform.position = transform.position;
+                cannon.gameObject.transform.parent = other.gameObject.transform;
 
-            if (overlord.gameStarted == false)
-                overlord.GameStart();
-
-            overlord.AddPoint();
+                if (overlord.gameStarted == false)
+                    overlord.GameStart();
+            }
+            
 
             Destroy(gameObject);
         }
