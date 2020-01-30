@@ -6,7 +6,6 @@ public class ObjectPooling : MonoBehaviour
 {
     private Overlord overlord;
 
-    private bool gameStarted = false;
     public bool moving = false;
     public List<GameObject> chunks;
     public List<GameObject> inactiveChunks;

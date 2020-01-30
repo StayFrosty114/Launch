@@ -36,14 +36,13 @@ public class Projectile : MonoBehaviour
         {
             if (transform.position.y >= cannon.transform.position.y)
             {
-                overlord.AddPoint();
-                cannon.transform.position = transform.position;
-                cannon.gameObject.transform.parent = other.gameObject.transform;
-
-                if (overlord.gameStarted == false)
-                    overlord.GameStart();
+                overlord.AddPoint();  
             }
-            
+            cannon.transform.position = transform.position;
+            cannon.gameObject.transform.parent = other.gameObject.transform;
+
+            if (overlord.gameStarted == false)
+                overlord.GameStart();
 
             Destroy(gameObject);
         }
