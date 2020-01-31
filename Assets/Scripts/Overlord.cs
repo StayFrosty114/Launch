@@ -8,8 +8,8 @@ public class Overlord : MonoBehaviour
     public int score;
     public Text scoreText;
 
-    public float moveSpeed = 0.02f;
-    private float acceleration = 15;
+    public float moveSpeed = 0.002f;
+    private float accelerateDelay = 15;
 
     public bool gameStarted = false;
 
@@ -30,12 +30,12 @@ public class Overlord : MonoBehaviour
     {
         while (gameStarted == true)
         {
-            yield return new WaitForSeconds(acceleration);
+            yield return new WaitForSeconds(accelerateDelay);
             Debug.Log("Speeding up" + moveSpeed);
             moveSpeed *= 1.5f;
             if (moveSpeed >= 0.01)
             {
-                acceleration = 30;
+                accelerateDelay = 30;
             }
             if (moveSpeed >= 0.02)
             {

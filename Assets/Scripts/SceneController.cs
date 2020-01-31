@@ -6,6 +6,12 @@ using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
 {
+    public GameObject controlScreen;
+
+    private void Start()
+    {
+        controlScreen.SetActive(false);
+    }
 
     // Menu Functions
     public void PlayGame()
@@ -15,12 +21,12 @@ public class SceneController : MonoBehaviour
 
     public void ControlMenu()
     {
-        SceneManager.LoadScene("ControlMenu");
+        controlScreen.SetActive(true);
     }
 
     public void MainMenu()
     {
-        SceneManager.LoadScene("MainMenu");
+        controlScreen.SetActive(false);
     }
 
     public void Quit()
