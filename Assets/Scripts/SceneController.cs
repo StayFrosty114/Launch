@@ -24,9 +24,14 @@ public class SceneController : MonoBehaviour
         controlScreen.SetActive(true);
     }
 
-    public void MainMenu()
+    public void CloseControls()
     {
         controlScreen.SetActive(false);
+    }
+
+    public void MainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void Quit()

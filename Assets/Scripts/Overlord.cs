@@ -7,15 +7,20 @@ public class Overlord : MonoBehaviour
 {
     public int score;
     public Text scoreText;
+    public GameObject deathScreen;
 
     public float moveSpeed = 0.002f;
     private float accelerateDelay = 15;
 
     public bool gameStarted = false;
 
+    private ScoreTracker sT;
+
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale = 1.0f;
+        deathScreen.SetActive(false);
         score = 0;
         scoreText.text = score.ToString();
     }
@@ -53,6 +58,11 @@ public class Overlord : MonoBehaviour
 
     public void Death()
     {
-        // Debug.Log("YOU DIED");
+        if (score >= ScoreTracker.highScore)
+        {
+            ScoreTracker.highScore = score;
+        }
+        Time.timeScale = 0.0f;
+        deathScreen.SetActive(true);
     }
 }

@@ -48,6 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ball: {fileID: 3432410554463998291, guid: 4a1078e36f9275f4e9d9f66c4b5c3628, type: 3}
   ballSpawn: {fileID: 4438852394194133931}
+  cannonShot: {fileID: 8300000, guid: 47c2c7d6d62d0f84fad312ac10b2bef9, type: 3}
 --- !u!114 &207200927
 MonoBehaviour:
   m_ObjectHideFlags: 0
