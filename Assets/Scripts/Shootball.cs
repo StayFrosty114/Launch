@@ -9,22 +9,27 @@ public class Shootball : MonoBehaviour
 
     private AudioController audioCon;
     public AudioClip cannonShot;
-    
 
+    private Overlord overlord;
     private void Start()
     {
         audioCon = GameObject.FindGameObjectWithTag("Overlord").GetComponent<AudioController>();
+        overlord = GameObject.FindGameObjectWithTag("Overlord").GetComponent<Overlord>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Checks for input.
-        if (Input.GetMouseButtonUp(0))
+        // Checks for input. Disabled if player dies.
+        if (overlord.deathScreen.activeInHierarchy == false)
         {
-            Fire();
-            audioCon.PlaySound(cannonShot);
+            if (Input.GetMouseButtonUp(0))
+            {
+                Fire();
+                audioCon.PlaySound(cannonShot);
+            }
         }
+        
     }
 
     // Instantiates a cannonball and fires it in the barrel direction.
