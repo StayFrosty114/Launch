@@ -14,11 +14,12 @@ public class Overlord : MonoBehaviour
 
     public bool gameStarted = false;
 
-    private ScoreTracker sT;
+    private SettingsManager sM;
 
     // Start is called before the first frame update
     void Start()
     {
+        sM = GameObject.FindObjectOfType<SettingsManager>();
         Time.timeScale = 1.0f;
         deathScreen.SetActive(false);
         score = 0;
@@ -61,6 +62,7 @@ public class Overlord : MonoBehaviour
         if (score >= ScoreTracker.highScore)
         {
             ScoreTracker.highScore = score;
+            sM.SaveHighScore();
         }
         Time.timeScale = 0.0f;
         deathScreen.SetActive(true);

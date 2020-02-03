@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class ObjectPooling : MonoBehaviour
@@ -14,6 +13,10 @@ public class ObjectPooling : MonoBehaviour
 
     private float currentTime;
 
+    private GameObject lastChunk;
+    private GameObject newChunk;
+    private int spawnRangeMin;
+    private int spawnRangeMax;
     
     // Start is called before the first frame update.
     void Start()
@@ -27,6 +30,13 @@ public class ObjectPooling : MonoBehaviour
             chunkToPlace.SetActive(false);
             inactiveChunks.Add(chunkToPlace);
         }
+        lastChunk = chunks[2];
+
+        GetChunk();
+        chunkToPlace.transform.Translate(0, -chunkToPlace.transform.GetComponent<Collider>().bounds.size.y * 2, 0);
+        GetChunk();
+        chunkToPlace.transform.Translate(0, -chunkToPlace.transform.GetComponent<Collider>().bounds.size.y, 0);
+        GetChunk();
     }
 
     private void Update()
@@ -43,47 +53,97 @@ public class ObjectPooling : MonoBehaviour
         Debug.Log("Spawning chunk");
         chunkToPlace.transform.position = spawnPoint.transform.position;
         chunkToPlace.SetActive(true);
+        lastChunk = chunkToPlace;
         inactiveChunks.Remove(chunkToPlace);
     }
 
     // Finds the correct type of chunk in the inactive list.
     private GameObject ChooseChunk()
     {
+        
         if (currentTime <= 30)
         {
-            GameObject newChunk = chunks[Random.Range(0, 5)];
-            foreach (GameObject chunk in inactiveChunks)
-            {
-                if (chunk.name.Contains(newChunk.name))
-                {
-                    return chunk;
-                }
-            }
-            return Instantiate(newChunk, spawnPoint.transform.position, spawnPoint.transform.rotation, overlord.transform);
+            spawnRangeMin = 0;
+            spawnRangeMax = 5;
+            
         }
         else if (currentTime >= 30 && currentTime <= 60)
         {
-            GameObject newChunk = chunks[Random.Range(0, chunks.Count)];
-            foreach (GameObject chunk in inactiveChunks)
-            {
-                if(chunk.name.Contains(newChunk.name))
-                {
-                    return chunk;
-                }
-            }
-            return Instantiate(newChunk, spawnPoint.transform.position, spawnPoint.transform.rotation, overlord.transform);
+            spawnRangeMin = 0;
+            spawnRangeMax = chunks.Count;
         }
         else
         {
-            GameObject newChunk = chunks[Random.Range(2, chunks.Count)];
-            foreach (GameObject chunk in inactiveChunks)
+            spawnRangeMin = 2;
+            spawnRangeMax = chunks.Count;
+        }
+        newChunk = chunks[Random.Range(spawnRangeMin, spawnRangeMax)];
+        newChunk = CheckChunk(newChunk, lastChunk);
+        foreach (GameObject chunk in inactiveChunks)
+        {
+            if (chunk.name.Contains(newChunk.name))
             {
-                if (chunk.name.Contains(newChunk.name))
-                {
-                    return chunk;
-                }
+                return chunk;
             }
-            return Instantiate(newChunk, spawnPoint.transform.position, spawnPoint.transform.rotation, overlord.transform);
+        }
+        return Instantiate(newChunk, spawnPoint.transform.position, spawnPoint.transform.rotation, overlord.transform);
+
+        // else if (currentTime >= 30 && currentTime <= 60)
+        // {
+        //     GameObject newChunk = chunks[Random.Range(0, chunks.Count)];
+        //     foreach (GameObject chunk in inactiveChunks)
+        //     {
+        //         if(chunk.name.Contains(newChunk.name))
+        //         {
+        //             return chunk;
+        //         }
+        //     }
+        //     return Instantiate(newChunk, spawnPoint.transform.position, spawnPoint.transform.rotation, overlord.transform);
+        // }
+        // else
+        // {
+        //     GameObject newChunk = chunks[Random.Range(2, chunks.Count)];
+        //     foreach (GameObject chunk in inactiveChunks)
+        //     {
+        //         if (chunk.name.Contains(newChunk.name))
+        //         {
+        //             return chunk;
+        //         }
+        //     }
+        //     return Instantiate(newChunk, spawnPoint.transform.position, spawnPoint.transform.rotation, overlord.transform);
+        // }
+    }
+
+    private GameObject CheckChunk(GameObject chunkToCheck, GameObject lastChunk)
+    {
+        if (lastChunk.name.Contains("L"))
+        {
+            while (chunkToCheck.name.Contains("R"))
+            {
+                chunkToCheck = chunks[Random.Range(spawnRangeMin, spawnRangeMax)];
+            }
+            return chunkToCheck;
+        }
+        else if (lastChunk.name.Contains("R"))
+        {
+            while (chunkToCheck.name.Contains("L"))
+            {
+                chunkToCheck = chunks[Random.Range(spawnRangeMin, spawnRangeMax)];
+            }
+            return chunkToCheck;
+        }
+        else if (lastChunk.name.Contains("C"))
+        {
+            while (chunkToCheck.name.Contains("C"))
+            {
+                chunkToCheck = chunks[Random.Range(spawnRangeMin, spawnRangeMax)];
+            }
+            return chunkToCheck;
+        }
+        else
+        {
+            Debug.LogError("Checking for unknown piece");
+            return chunkToCheck;
         }
     }
 
