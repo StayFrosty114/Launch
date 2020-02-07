@@ -25,8 +25,8 @@ public class Shootball : MonoBehaviour
         {
             if (Input.GetMouseButtonUp(0))
             {
-                Fire();
                 audioCon.PlaySound(cannonShot);
+                Fire();
             }
         }
         
