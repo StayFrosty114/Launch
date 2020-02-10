@@ -15,11 +15,14 @@ public class Overlord : MonoBehaviour
     public bool gameStarted = false;
 
     private SettingsManager sM;
+    private GoogleHandler gH;
+    public int gamesPlayed = 0;
 
     // Start is called before the first frame update
     void Start()
     {
         sM = GameObject.FindObjectOfType<SettingsManager>();
+        gH = GameObject.FindObjectOfType<GoogleHandler>();
         Time.timeScale = 1.0f;
         deathScreen.SetActive(false);
         score = 0;
@@ -66,5 +69,15 @@ public class Overlord : MonoBehaviour
         }
         Time.timeScale = 0.0f;
         deathScreen.SetActive(true);
+        UpdateAchievements();
+    }
+    private void UpdateAchievements()
+    {
+        if (gamesPlayed <= 0)
+        {
+            gH.UpdateAchievement("CgkIivzD8KwEEAIQAA");
+            gamesPlayed++;
+            sM.SaveInt("gamesPlayed", gamesPlayed);
+        }
     }
 }

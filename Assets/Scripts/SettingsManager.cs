@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class SettingsManager : MonoBehaviour
 {
+
+    private GoogleHandler googleHandler;
     // Start is called before the first frame update
     void Start()
     {
         DontDestroyOnLoad(gameObject);
+        googleHandler = GetComponent<GoogleHandler>();
+        googleHandler.StartGooglePlayServices();
     }
 
     public void SaveHighScore()
@@ -19,9 +23,16 @@ public class SettingsManager : MonoBehaviour
         Debug.Log(PlayerPrefs.GetInt("highScore"));
     }
 
+    public void SaveInt(string name, int i)
+    {
+        PlayerPrefs.SetInt(name, i);
+    }
+
+
     public void LoadSettings()
     {
         Debug.Log(PlayerPrefs.GetInt("highScore"));
         ScoreTracker.highScore = PlayerPrefs.GetInt("highScore");
+        
     }
 }
