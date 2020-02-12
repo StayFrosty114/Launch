@@ -70,22 +70,35 @@ public class Overlord : MonoBehaviour
             ScoreTracker.highScore = score;
             sM.SaveHighScore();
         }
-        if (score >= 50 && launch50 <= 0)
-        {
-
-        }
         Time.timeScale = 0.0f;
         deathScreen.SetActive(true);
         UpdateAchievements();
     }
     private void UpdateAchievements()
     {
+        // Played a game
         if (gamesPlayed <= 0)
         {
             gH.UpdateAchievement("CgkIivzD8KwEEAIQAA");
             gamesPlayed++;
             sM.SaveInt("gamesPlayed", gamesPlayed);
             Debug.Log("Played a game");
+        }
+        // Reached 50
+        if (score >= 50 && launch50 <= 0)
+        {
+            gH.UpdateAchievement("CgkIivzD8KwEEAIQAQ");
+            launch50++;
+            sM.SaveInt("launch50", launch50);
+            Debug.Log("Reached 50 for the first time");
+        }
+        // Reached 100
+        if (score >= 100 && launch100 <= 0)
+        {
+            gH.UpdateAchievement("CgkIivzD8KwEEAIQAg");
+            launch100++;
+            sM.SaveInt("launch100", launch100);
+            Debug.Log("Reached 100 for the first time");
         }
     }
 }

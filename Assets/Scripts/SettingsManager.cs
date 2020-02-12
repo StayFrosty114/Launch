@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class SettingsManager : MonoBehaviour
 {
+    // public int launch50 = 0;
+    // public int launch100 = 0;
+    // public int gamesPlayed = 0;
 
     private GoogleHandler googleHandler;
+
     // Start is called before the first frame update
     void Start()
     {
