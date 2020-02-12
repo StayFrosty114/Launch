@@ -28,11 +28,9 @@ public class SettingsManager : MonoBehaviour
         PlayerPrefs.SetInt(name, i);
     }
 
-
     public void LoadSettings()
     {
         Debug.Log(PlayerPrefs.GetInt("highScore"));
         ScoreTracker.highScore = PlayerPrefs.GetInt("highScore");
-        
     }
 }

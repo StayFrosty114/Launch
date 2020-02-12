@@ -16,10 +16,4 @@ public class ScoreTracker : MonoBehaviour
         sM.LoadSettings();
         highScoreText.text = "HIGH SCORE: " + highScore.ToString();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 }

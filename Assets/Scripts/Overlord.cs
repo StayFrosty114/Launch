@@ -16,7 +16,10 @@ public class Overlord : MonoBehaviour
 
     private SettingsManager sM;
     private GoogleHandler gH;
-    public int gamesPlayed = 0;
+    // Achievement Variables. 0 = locked, 1 = unlocked
+    public int gamesPlayed;
+    public int launch50;
+    public int launch100;
 
     // Start is called before the first frame update
     void Start()
@@ -67,6 +70,10 @@ public class Overlord : MonoBehaviour
             ScoreTracker.highScore = score;
             sM.SaveHighScore();
         }
+        if (score >= 50 && launch50 <= 0)
+        {
+
+        }
         Time.timeScale = 0.0f;
         deathScreen.SetActive(true);
         UpdateAchievements();
@@ -78,6 +85,7 @@ public class Overlord : MonoBehaviour
             gH.UpdateAchievement("CgkIivzD8KwEEAIQAA");
             gamesPlayed++;
             sM.SaveInt("gamesPlayed", gamesPlayed);
+            Debug.Log("Played a game");
         }
     }
 }

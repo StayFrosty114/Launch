@@ -24,6 +24,8 @@
 
 public static class GPGSIds
 {
+        public const string achievement_50_launches = "CgkIivzD8KwEEAIQAQ"; // <GPGSID>
+        public const string achievement_100_launches = "CgkIivzD8KwEEAIQAg"; // <GPGSID>
         public const string achievement_launch = "CgkIivzD8KwEEAIQAA"; // <GPGSID>
 
 }
