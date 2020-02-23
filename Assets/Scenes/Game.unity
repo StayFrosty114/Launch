@@ -1081,6 +1081,9 @@ MonoBehaviour:
   deathScreen: {fileID: 1593355950}
   moveSpeed: 0.002
   gameStarted: 0
+  gamesPlayed: 0
+  launch50: 0
+  launch100: 0
 --- !u!4 &687327376
 Transform:
   m_ObjectHideFlags: 0
