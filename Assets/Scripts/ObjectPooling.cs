@@ -33,6 +33,8 @@ public class ObjectPooling : MonoBehaviour
         lastChunk = chunks[2];
 
         GetChunk();
+        chunkToPlace.transform.Translate(0, -chunkToPlace.transform.GetComponent<Collider>().bounds.size.y * 3, 0);
+        GetChunk();
         chunkToPlace.transform.Translate(0, -chunkToPlace.transform.GetComponent<Collider>().bounds.size.y * 2, 0);
         GetChunk();
         chunkToPlace.transform.Translate(0, -chunkToPlace.transform.GetComponent<Collider>().bounds.size.y, 0);
