@@ -9,8 +9,9 @@ public class Overlord : MonoBehaviour
     public Text scoreText;
     public GameObject deathScreen;
 
-    public float moveSpeed = 0.002f;
+    public float moveSpeed = 0.004f;
     private float accelerateDelay = 15;
+    public float rubberBand = 0;
 
     public bool gameStarted = false;
 
@@ -54,6 +55,15 @@ public class Overlord : MonoBehaviour
                 StopCoroutine(Accelerate());
             }
         }
+    }
+
+    public void RubberBand(bool on)
+    {
+        if (on)
+            rubberBand = moveSpeed * 2;
+        else
+            rubberBand = 0;
+        Debug.Log(rubberBand);
     }
 
     // Adds a point to the score every time the player moves up a platform.

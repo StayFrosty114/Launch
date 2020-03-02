@@ -7,10 +7,12 @@ public class Cannon : MonoBehaviour
     public Camera mainCam;
 
     private Overlord overlord;
+    private CamController cc;
 
     private void Start()
     {
         overlord = GameObject.FindGameObjectWithTag("Overlord").GetComponent<Overlord>();
+        cc = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CamController>();
     }
 
     // Update is called once per frame
@@ -60,5 +62,29 @@ public class Cannon : MonoBehaviour
             Debug.Log("Hit the ground");
             overlord.Death();
         }
+
+        if (other.gameObject.CompareTag("CamTrigger"))
+        {
+            cc.RaiseCam();
+        }
+
+        if (other.gameObject.CompareTag("SpeedTrigger"))
+        {
+            overlord.RubberBand(true);
+        }
     }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("SpeedTrigger"))
+        {
+            overlord.RubberBand(false);
+        }
+
+        if (other.gameObject.CompareTag("CamTrigger"))
+        {
+            cc.LowerCam();
+        }
+    }
+
 }

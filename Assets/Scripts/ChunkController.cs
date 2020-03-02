@@ -20,7 +20,7 @@ public class ChunkController : MonoBehaviour
     void FixedUpdate()
     {
         if (overlord.gameStarted)
-            rB.MovePosition(transform.position -= (transform.up * overlord.moveSpeed));
+            rB.MovePosition(transform.position -= (transform.up * (overlord.moveSpeed + overlord.rubberBand)));
     }
 
     // If chunk hits bottom trigger, it deactivates itself and spawns a new chunk at the top.

@@ -4,9 +4,11 @@ using UnityEngine;
 using GooglePlayGames;
 using GooglePlayGames.BasicApi;
 using UnityEngine.SocialPlatforms;
+using UnityEngine.UI;
 
 public class GoogleHandler : MonoBehaviour
 {
+    public Text debugText;
     public void StartGooglePlayServices()
     {
         PlayGamesClientConfiguration config = new
@@ -26,11 +28,12 @@ public class GoogleHandler : MonoBehaviour
             {
                 if (success == true)
                 {
-
+                    debugText.text = "authenticated";
                 }
                 else
                 {
                     Debug.Log("Login failed");
+                    debugText.text = "auth failed";
                 }
             });
         }
@@ -95,10 +98,13 @@ public class GoogleHandler : MonoBehaviour
         if (PlayGamesPlatform.Instance.localUser.authenticated)
         {
             PlayGamesPlatform.Instance.ShowAchievementsUI();
+            debugText.text = "Showing achievements";
         }
         else
         {
             Debug.Log("Not authenticated");
+            debugText.text = "Achievements not authenticated";
         }
+
     }
 }
