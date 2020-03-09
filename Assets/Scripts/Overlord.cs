@@ -7,6 +7,9 @@ public class Overlord : MonoBehaviour
 {
     public int score;
     public Text scoreText;
+    public int gold;
+    public Text goldText;
+
     public GameObject deathScreen;
 
     public float moveSpeed = 0.004f;
@@ -17,7 +20,8 @@ public class Overlord : MonoBehaviour
 
     private SettingsManager sM;
     private GoogleHandler gH;
-    // Achievement Variables. 0 = locked, 1 = unlocked
+    
+    // Achievement Variables.
     public int gamesPlayed;
     public int launch50;
     public int launch100;
@@ -71,6 +75,11 @@ public class Overlord : MonoBehaviour
     {
         score++;
         scoreText.text = score.ToString();
+        if (score % 10 == 0)
+        {
+            gold++;
+            goldText.text = gold.ToString();
+        }
     }
 
     public void Death()

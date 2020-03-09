@@ -8,11 +8,18 @@ public class SceneController : MonoBehaviour
 {
     public GameObject controlScreen;
     public GameObject creditScreen;
+    private SettingsManager sM;
 
     private void Start()
     {
-        controlScreen.SetActive(false);
-        creditScreen.SetActive(false);
+        sM = FindObjectOfType<SettingsManager>();
+
+        if (controlScreen != null)
+            controlScreen.SetActive(false);
+
+        if (creditScreen != null)
+            creditScreen.SetActive(false);
+
     }
 
     // Menu Functions
@@ -21,7 +28,7 @@ public class SceneController : MonoBehaviour
         SceneManager.LoadScene("Game");
     }
 
-    public void ControlMenu()
+    public void ControlScreen()
     {
         controlScreen.SetActive(true);
     }
@@ -44,6 +51,11 @@ public class SceneController : MonoBehaviour
     public void MainMenu()
     {
         SceneManager.LoadScene("MainMenu");
+    }
+    public void OptionsMenu()
+    {
+        SceneManager.LoadScene("OptionsMenu");
+
     }
 
     public void Quit()
