@@ -22,12 +22,19 @@ public class SceneController : MonoBehaviour
 
     }
 
-    // Menu Functions
+    #region MainMenu
     public void PlayGame()
     {
         SceneManager.LoadScene("Game");
     }
 
+    public void Quit()
+    {
+        Application.Quit();
+    }
+    #endregion
+
+    #region OptionMenu
     public void ControlScreen()
     {
         controlScreen.SetActive(true);
@@ -47,7 +54,14 @@ public class SceneController : MonoBehaviour
     {
         creditScreen.SetActive(false);
     }
+    #endregion
 
+    #region ShopMenu
+
+
+    #endregion
+
+    #region Menu Loading
     public void MainMenu()
     {
         SceneManager.LoadScene("MainMenu");
@@ -55,12 +69,11 @@ public class SceneController : MonoBehaviour
     public void OptionsMenu()
     {
         SceneManager.LoadScene("OptionsMenu");
-
     }
-
-    public void Quit()
+    public void ShopMenu()
     {
-        Application.Quit();
+        SceneManager.LoadScene("ShopMenu");
     }
+    #endregion
 
 }
