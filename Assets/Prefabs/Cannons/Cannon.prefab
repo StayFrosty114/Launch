@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 3280865519298597313}
   - component: {fileID: 207200926}
   - component: {fileID: 207200927}
+  - component: {fileID: 8562744452562392803}
+  - component: {fileID: 265133231084958904}
   m_Layer: 0
   m_Name: Cannon
   m_TagString: Cannon
@@ -48,7 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ball: {fileID: 3432410554463998291, guid: 4a1078e36f9275f4e9d9f66c4b5c3628, type: 3}
   ballSpawn: {fileID: 4438852394194133931}
-  cannonShot: {fileID: 8300000, guid: 47c2c7d6d62d0f84fad312ac10b2bef9, type: 3}
+  cannonShot: {fileID: 8300000, guid: 1d298220b9f150b4f9e9ce379099a3a5, type: 3}
 --- !u!114 &207200927
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,6 +64,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCam: {fileID: 0}
+--- !u!54 &8562744452562392803
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 246045149739975268}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &265133231084958904
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 246045149739975268}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.99999976, y: 0.19823346, z: 0.99999976}
+  m_Center: {x: 0, y: -0.4008844, z: 0}
 --- !u!1 &4438852394194133931
 GameObject:
   m_ObjectHideFlags: 0
@@ -132,7 +163,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5413500476882604962}
-  m_Mesh: {fileID: 8211372540250625004, guid: 02f7211173a73a84c877fadf64c58ff7, type: 3}
+  m_Mesh: {fileID: 3188861999907982402, guid: d5963d63b8cbf8340bfc27bf0e1c67eb, type: 3}
 --- !u!23 &946639352856106371
 MeshRenderer:
   m_ObjectHideFlags: 0

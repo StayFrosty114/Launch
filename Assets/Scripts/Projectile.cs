@@ -38,7 +38,8 @@ public class Projectile : MonoBehaviour
             {
                 overlord.AddPoint();  
             }
-            cannon.transform.position = transform.position;
+            Vector3 newPos = new Vector3(transform.position.x, transform.position.y, cannon.transform.position.z);
+            cannon.transform.position = newPos;
             cannon.gameObject.transform.parent = other.gameObject.transform;
 
             if (overlord.gameStarted == false)

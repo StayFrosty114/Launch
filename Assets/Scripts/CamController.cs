@@ -6,7 +6,7 @@ public class CamController : MonoBehaviour
 {
     private Vector3 origin;
     private Vector3 lastPosition;
-    public GameObject cannon;
+    private GameObject cannon;
     private float t = 0.0f;
     private bool raising = false;
     private bool resetCam = false;
@@ -14,6 +14,7 @@ public class CamController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        cannon = GameObject.FindGameObjectWithTag("Cannon");
         origin = transform.position;
     }
 
