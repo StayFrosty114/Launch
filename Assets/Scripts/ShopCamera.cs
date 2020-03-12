@@ -5,9 +5,11 @@ using UnityEngine.UI;
 
 public class ShopCamera : MonoBehaviour
 {
+    private SettingsManager sM;
+
     private float increment = 0.5f;
     private int currentCannon;
-    private int selectedCannon;
+    public static int selectedCannon;
     private float maximum = 1.5f;
     private float minimum = 0f;
 
@@ -15,6 +17,7 @@ public class ShopCamera : MonoBehaviour
 
     private void Start()
     {
+        sM = GameObject.FindObjectOfType<SettingsManager>();
         currentCannon = 0;
         UpdateTitleText();
     }
@@ -46,6 +49,7 @@ public class ShopCamera : MonoBehaviour
     {
         selectedCannon = currentCannon;
         Debug.Log("Selected: " + selectedCannon);
+        sM.SaveCannon(selectedCannon);
     }
 
     public void UpdateTitleText()

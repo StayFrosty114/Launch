@@ -41,6 +41,11 @@ public class SettingsManager : MonoBehaviour
         PlayerPrefs.SetInt("totalGold", Overlord.gold);
     }
 
+    public void SaveCannon()
+    {
+
+    }
+
     public void SaveInt(string name, int i)
     {
         PlayerPrefs.SetInt(name, i);

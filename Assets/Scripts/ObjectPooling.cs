@@ -17,10 +17,6 @@ public class ObjectPooling : MonoBehaviour
     private GameObject newChunk;
     private int spawnRangeMin;
     private int spawnRangeMax;
-
-    public GameObject[] cannons;
-    public int cannonSelect = 0;
-    public GameObject cannonSpawn;
     
     // Start is called before the first frame update.
     void Start()
@@ -44,9 +40,6 @@ public class ObjectPooling : MonoBehaviour
         GetChunk();
         chunkToPlace.transform.Translate(0, -chunkToPlace.transform.GetComponent<Collider>().bounds.size.y, 0);
         GetChunk();
-
-        // Instantiates the cannon that the player has equipped
-        Instantiate(cannons[cannonSelect], cannonSpawn.transform.position, cannonSpawn.transform.rotation, overlord.transform);
     }
 
     private void Update()
