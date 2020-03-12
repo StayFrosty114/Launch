@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Cannon : MonoBehaviour
 {
-    public Camera mainCam;
+    private Camera mainCam;
 
     private Overlord overlord;
     private CamController cc;
@@ -13,6 +13,7 @@ public class Cannon : MonoBehaviour
     {
         overlord = GameObject.FindGameObjectWithTag("Overlord").GetComponent<Overlord>();
         cc = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CamController>();
+        mainCam = FindObjectOfType<Camera>();
     }
 
     // Update is called once per frame
@@ -66,6 +67,7 @@ public class Cannon : MonoBehaviour
         if (other.gameObject.CompareTag("CamTrigger"))
         {
             cc.RaiseCam();
+            Debug.Log("Calling raise");
         }
 
         if (other.gameObject.CompareTag("SpeedTrigger"))

@@ -34,6 +34,13 @@ public class SettingsManager : MonoBehaviour
         Debug.Log(PlayerPrefs.GetInt("highScore"));
     }
 
+    public void SaveGold()
+    {
+        PlayerPrefs.GetInt("totalGold");
+        Overlord.gold += PlayerPrefs.GetInt("totalGold");
+        PlayerPrefs.SetInt("totalGold", Overlord.gold);
+    }
+
     public void SaveInt(string name, int i)
     {
         PlayerPrefs.SetInt(name, i);
@@ -41,9 +48,8 @@ public class SettingsManager : MonoBehaviour
 
     public void LoadSettings()
     {
-        Debug.Log(PlayerPrefs.GetInt("highScore"));
         ScoreTracker.highScore = PlayerPrefs.GetInt("highScore");
-
+        Overlord.gold = PlayerPrefs.GetInt("totalGold)");
         mute = (PlayerPrefs.GetInt("mute") == 1 ? true : false);
 
     }

@@ -24,6 +24,7 @@ public class CamController : MonoBehaviour
         if (raising)
         {
             resetCam = false;
+            Debug.Log("Raising");
             transform.position = Vector3.Lerp(lastPosition, new Vector3(transform.position.x, cannon.transform.position.y, transform.position.z), t);
             t += 0.5f * Time.deltaTime;
 
