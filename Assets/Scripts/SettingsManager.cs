@@ -34,18 +34,6 @@ public class SettingsManager : MonoBehaviour
         Debug.Log(PlayerPrefs.GetInt("highScore"));
     }
 
-    public void SaveGold()
-    {
-        PlayerPrefs.GetInt("totalGold");
-        Overlord.gold += PlayerPrefs.GetInt("totalGold");
-        PlayerPrefs.SetInt("totalGold", Overlord.gold);
-    }
-
-    public void SaveCannon()
-    {
-
-    }
-
     public void SaveInt(string name, int i)
     {
         PlayerPrefs.SetInt(name, i);
@@ -56,6 +44,10 @@ public class SettingsManager : MonoBehaviour
         ScoreTracker.highScore = PlayerPrefs.GetInt("highScore");
         Overlord.gold = PlayerPrefs.GetInt("totalGold)");
         mute = (PlayerPrefs.GetInt("mute") == 1 ? true : false);
+        ShopCamera.selectedCannon = PlayerPrefs.GetInt("selectedCannon");
+        ShopCamera.unlocked1 = PlayerPrefs.GetInt("unlocked1");
+        ShopCamera.unlocked2 = PlayerPrefs.GetInt("unlocked2");
+        ShopCamera.unlocked3 = PlayerPrefs.GetInt("unlocked3");
 
     }
 

@@ -89,7 +89,7 @@ public class Overlord : MonoBehaviour
             ScoreTracker.highScore = score;
             sM.SaveHighScore();
         }
-        sM.SaveGold();
+        sM.SaveInt("gold", gold);
         Time.timeScale = 0.0f;
         deathScreen.SetActive(true);
         UpdateAchievements();
