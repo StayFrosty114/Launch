@@ -121,7 +121,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: 1.0
+  bundleVersion: 1.1
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -164,7 +164,7 @@ PlayerSettings:
   applicationIdentifier:
     Android: com.BenGilbert.FTG_Launch
   buildNumber: {}
-  AndroidBundleVersionCode: 3
+  AndroidBundleVersionCode: 4
   AndroidMinSdkVersion: 24
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 1
@@ -257,7 +257,7 @@ PlayerSettings:
   AndroidTargetArchitectures: 3
   AndroidSplashScreenScale: 1
   androidSplashScreen: {fileID: 2800000, guid: 27f14c026118fca4289110a27b1a2df0, type: 3}
-  AndroidKeystoreName: D:/Mobile/BenGilbert.keystore
+  AndroidKeystoreName: E:/Mobile/BenGilbert.keystore
   AndroidKeyaliasName: bengilbert
   AndroidBuildApkPerCpuArchitecture: 1
   AndroidTVCompatibility: 0
